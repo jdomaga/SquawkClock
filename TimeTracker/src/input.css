@@ -1,0 +1,13 @@
+@tailwind base;
+
+@layer base {
+    button:focus {
+        @apply outline outline-1 outline-slate-300 border-slate-300
+    }
+    button:hover {
+        @apply outline outline-1 outline-slate-300 border-slate-300
+    }
+  }
+
+@tailwind components;
+@tailwind utilities;
