@@ -66,6 +66,11 @@ export default function Accordion(): JSX.Element {
     setFinishedTimers(newpast);
   }
 
+  function addTimer(activity: string, startDate : Date){
+    const timer : ActiveTimer = {activity, startDate, duration: '0'}
+    setTimers([...timers, timer])
+  }
+
   return (
     <div className="w-full flex flex-col gap-16">
       <ItemCard
@@ -73,7 +78,7 @@ export default function Accordion(): JSX.Element {
         openStart={true}
         titleIconPath={workbird}
       >
-        <TimerInput />
+        <TimerInput addTimer={addTimer} />
       </ItemCard>
       <ItemCard
         title="Ongoing Timers"
