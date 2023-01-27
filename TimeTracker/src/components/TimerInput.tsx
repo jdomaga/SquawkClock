@@ -1,5 +1,25 @@
 import { useState } from "react";
 
+function createDateFromInputs( date: String, time: String): Date{
+    if(date && time) return new Date(date + "T" + time)
+    // if only date, default to current time
+    if(date){
+        const [year, month, day] = date.split('-');
+        // subtract 1 because input starts with 1 for Jan, but date object starts with 0
+        return new Date( parseInt(year), parseInt(month) - 1 ,parseInt(day));
+    }
+    // if only time, default to current date
+    if(time){
+        const today = new Date();
+        const [hours, mins] = time.split(':')
+        today.setHours(parseInt(hours));
+        today.setMinutes(parseInt(mins));
+        return today;
+    }
+    // else by default choose current day/time
+    return new Date()
+}
+
 export default function TimerInput({addTimer} : {addTimer : Function}) {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -7,23 +27,7 @@ export default function TimerInput({addTimer} : {addTimer : Function}) {
 
   function addTime(){
     //if we have a day specified, time is optional
-    let newDateTime: Date;
-    if(date){
-        const dtStr = time ? date + 'T' + time : date;
-        newDateTime = new Date(dtStr);
-    }
-    // if we have a time but no date, then use current date
-    // flag: check for timezone stuff? see if the actual time is being used....
-    else if(time){
-        newDateTime = new Date();
-        const [hours, mins] = time.split(':')
-        newDateTime.setHours(parseInt(hours));
-        newDateTime.setMinutes(parseInt(mins));
-    }
-    //othwerwise just use now
-    else {
-        newDateTime = new Date();
-    }
+    const newDateTime = createDateFromInputs(date, time);
     // only add timer if they actually gave it a name...
     if(name)
     addTimer(name, newDateTime);

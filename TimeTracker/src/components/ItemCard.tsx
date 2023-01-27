@@ -1,7 +1,7 @@
-import { useState, useEffect, Children } from "react";
+import { Children, useEffect, useState } from "react";
 
-import upChar from "/images/upchar.svg";
 import downChar from "/images/downchar.svg";
+import upChar from "/images/upchar.svg";
 
 function ItemCard({
   title,
@@ -10,7 +10,7 @@ function ItemCard({
   openStart = false
 }: {
   title: string;
-  titleIconPath: string;
+  titleIconPath?: string;
   children?: JSX.Element[] | JSX.Element;
   openStart?: boolean;
 }) {
@@ -31,7 +31,7 @@ function ItemCard({
           onClick={toggleHidden}
         >
           <div className="flex">
-            <img className="h-12 w-12 pr-2" src={titleIconPath} />
+            {titleIconPath && <img className="h-12 w-12 pr-2" src={titleIconPath} />}
             <div className="p-2">{title}</div>
           </div>
           {hidden ? <img src={upChar}></img> : <img src={downChar}></img>}

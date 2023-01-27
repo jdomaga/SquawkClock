@@ -38,7 +38,7 @@ export default function TimerRow({
                 className="bg-transparent font-bold text-green-500"
                 onClick={finish}
             >
-                Finish {index}
+                Finish
             </button>
             )}
           <button
