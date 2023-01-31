@@ -1,4 +1,5 @@
 import ActiveTimer from "../models/ActiveTimer";
+import { formatDuration } from '../utils/formatters';
 
 export default function TimerRow({
   timer,
@@ -31,7 +32,7 @@ export default function TimerRow({
           minute: "2-digit",
         })}
       </td>
-      <td>{timer.duration}</td>
+      <td>{formatDuration(timer.duration)}</td>
         <td>
             {!finished && (
             <button

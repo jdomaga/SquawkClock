@@ -18,7 +18,7 @@ export default function TimerGroups({
   setFinishedTimers: Function;
 }) {
   function addTimer(activity: string, startDate: Date) {
-    const timer: ActiveTimer = { activity, startDate, duration: "0" };
+    const timer: ActiveTimer = { activity, startDate, duration: "1" };
     setTimers([...timers, timer]);
   }
 

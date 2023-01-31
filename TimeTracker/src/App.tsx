@@ -5,6 +5,8 @@ import Hero from "./components/Hero";
 import TimerGroups from "./components/TimerGroups";
 import ActiveTimer from "./models/ActiveTimer";
 
+const MINS_PER_UPDATE = 1;
+
 function App() {
   const [timers, setTimers] = useState<Array<ActiveTimer>>([{activity: 'jerkin it', startDate: new Date(), duration: '0'}]);
 
@@ -16,14 +18,14 @@ function App() {
       const localTimers = timers.map((timer) => {
         const diffSecs: number =
           (now.getTime() - timer.startDate.getTime()) / 1000;
-        const diffMins: number = Math.ceil(diffSecs);
-        // const diffMins: number = Math.ceil(diffSecs / 60);
+        // const diffMins: number = Math.ceil(diffSecs); flag: uncomment for easier testing
+        const diffMins: number = Math.ceil(diffSecs / 60);
         return { ...timer, duration: diffMins.toString() };
       });
       setTimers(localTimers);
     }
 
-    const interval = window.setInterval(updateDuration, 1000 * 60);
+    const interval = window.setInterval(updateDuration, 1000 * MINS_PER_UPDATE);
     return () => {
       window.clearInterval(interval);
     };

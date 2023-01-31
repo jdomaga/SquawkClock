@@ -1,12 +1,12 @@
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import ActiveTimer from "../../models/ActiveTimer";
+import MetricTimer from "../../models/MetricTimer";
 import { BackgroundColor, BorderColor } from './ChartColors';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-export default function PieTime({timers} : {timers : ActiveTimer[]}){
+export default function PieTime({timers} : {timers : MetricTimer[]}){
 
   const labels = timers.map(timer => timer.activity)
   const durations = timers.map(timer => timer.duration);
