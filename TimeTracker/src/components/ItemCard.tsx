@@ -1,7 +1,7 @@
 import { Children, useEffect, useState } from "react";
 
-import downChar from "/images/downchar.svg";
-import upChar from "/images/upchar.svg";
+import downChar from "/assets/img/downchar.svg";
+import upChar from "/assets/img/upchar.svg";
 
 function ItemCard({
   title,

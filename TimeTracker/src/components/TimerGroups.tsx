@@ -2,9 +2,9 @@ import ActiveTimer from "../models/ActiveTimer";
 import Accordion from "./Accordion";
 import TimerInput from "./TimerInput";
 import TimerTable from "./TimerTable";
-import birdclock from "/birdclock.png";
-import sleepy from "/sleepbird.png";
-import workbird from "/workbird.png";
+import birdclock from "/assets/img/birdclock.png";
+import sleepy from "/assets/img/sleepbird.png";
+import workbird from "/assets/img/workbird.png";
 
 export default function TimerGroups({
   timers,

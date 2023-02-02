@@ -16,7 +16,7 @@ export default function Metrics({timers} : {timers: ActiveTimer[]}) {
       <div className="px-8 py-4">
         {title}
         {
-          timers && timers.length &&
+          timers && ( !! timers.length) &&
           <div className="flex mt-12 justify-between">
           <PieTime timers={combinedTimers}/>
           <BarTime timers={combinedTimers}/>

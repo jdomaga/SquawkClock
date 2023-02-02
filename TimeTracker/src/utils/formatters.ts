@@ -13,7 +13,6 @@ export function formatDuration(duration: string): string {
     const mins = time % 60;
     const hours = Math.floor(time / 60) % 24;
     const days = Math.floor(time / (60 * 24));
-    console.log(time)
     
     const dstr = days > 0 ? `${days} days, ` : '';
     const hstr = hours > 0 ? `${hours} hours, ` : '';

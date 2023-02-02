@@ -4,11 +4,12 @@ import Metrics from "./components/charts/Metrics";
 import Hero from "./components/Hero";
 import TimerGroups from "./components/TimerGroups";
 import ActiveTimer from "./models/ActiveTimer";
+import bgHero from "/assets/img/bg.jpg";
 
 const MINS_PER_UPDATE = 1;
 
 function App() {
-  const [timers, setTimers] = useState<Array<ActiveTimer>>([{activity: 'jerkin it', startDate: new Date(), duration: '0'}]);
+  const [timers, setTimers] = useState<Array<ActiveTimer>>([]);
 
   const [finishedTimers, setFinishedTimers] = useState<Array<ActiveTimer>>([]);
   
@@ -33,14 +34,14 @@ function App() {
 
   return (
     <div className="App flex flex-col gap-y-8">
-      <Hero bgUrl="/bg.jpg" title="Squawk O' Clock">
+      <Hero bgUrl={bgHero} title="Squawk O' Clock">
         <button className="bg-transparent text-white border-solid border border-slate-100 w-56 text-left">
           Import from CSV
         </button>
         <button className="bg-transparent text-white border-solid border border-slate-100 w-56 text-left">
           Export to CSV
         </button>
-        <button className="bg-black text-white w-56"> More Projects</button>
+        <button className="bg-black text-white w-56"> More Projects ( Soon )</button>
       </Hero>
       <TimerGroups timers={timers} setTimers={setTimers} finishedTimers={finishedTimers} setFinishedTimers={setFinishedTimers} />
       <Metrics timers={finishedTimers}/>
