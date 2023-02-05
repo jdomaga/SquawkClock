@@ -93,3 +93,7 @@ button:focus-visible {
 .timer-table th{
   padding: 1rem 1.5rem 1rem 1.5rem;
 }
+
+a.link-button {
+  all: unset;
+}

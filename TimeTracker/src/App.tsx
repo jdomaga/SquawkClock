@@ -3,6 +3,8 @@ import "./App.css";
 import Metrics from "./components/charts/Metrics";
 import Hero from "./components/Hero";
 import TimerGroups from "./components/TimerGroups";
+import DownloadSave from './components/DownloadSave'
+import ImportSave from './components/ImportSave'
 import ActiveTimer from "./models/ActiveTimer";
 import bgHero from "/assets/img/bg.jpg";
 
@@ -35,12 +37,8 @@ function App() {
   return (
     <div className="App flex flex-col gap-y-8">
       <Hero bgUrl={bgHero} title="Squawk O' Clock">
-        <button className="bg-transparent text-white border-solid border border-slate-100 w-56 text-left">
-          Import from CSV
-        </button>
-        <button className="bg-transparent text-white border-solid border border-slate-100 w-56 text-left">
-          Export to CSV
-        </button>
+        <ImportSave setFinishedTimers={setFinishedTimers} setTimers={setTimers} />
+        <DownloadSave finishedTimers={finishedTimers} timers={timers} />
         <button className="bg-black text-white w-56"> More Projects ( Soon )</button>
       </Hero>
       <TimerGroups timers={timers} setTimers={setTimers} finishedTimers={finishedTimers} setFinishedTimers={setFinishedTimers} />
