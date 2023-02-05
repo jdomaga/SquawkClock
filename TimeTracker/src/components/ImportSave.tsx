@@ -1,3 +1,10 @@
+
+interface savedTimer {
+    startDate : string,
+    duration: string,
+    activity: string,
+ }
+
 export default function DownloadSave({
     setTimers,
     setFinishedTimers,
@@ -21,12 +28,12 @@ export default function DownloadSave({
                 }   
                 const saveDataObj = JSON.parse(decodedStr)
                 if(saveDataObj.activeTimers){
-                    saveDataObj.activeTimers = saveDataObj.activeTimers.map((timer) => {return {...timer, startDate : new Date(timer.startDate)}});
+                    saveDataObj.activeTimers = saveDataObj.activeTimers.map((timer : savedTimer) => {return {...timer, startDate : new Date(timer.startDate)}});
                     console.log(saveDataObj.activeTimers)
                     setTimers(saveDataObj.activeTimers)
                 }
                 if(saveDataObj.finishedTimers){
-                    saveDataObj.finishedTimers = saveDataObj.finishedTimers.map((timer) => {return {...timer, startDate : new Date(timer.startDate)}});
+                    saveDataObj.finishedTimers = saveDataObj.finishedTimers.map((timer : savedTimer) => {return {...timer, startDate : new Date(timer.startDate)}});
                     setFinishedTimers(saveDataObj.finishedTimers);
                 }
             }
