@@ -1,17 +1,16 @@
-
-interface savedTimer {
+import {useTimersContext}  from '../contexts/TimersContext'
+interface SavedTimer {
     startDate : string,
     duration: string,
     activity: string,
  }
 
-export default function DownloadSave({
-    setTimers,
-    setFinishedTimers,
-}: {
-  setTimers: Function;
-  setFinishedTimers: Function;
-}) {
+export default function DownloadSave() {
+
+    const timersContext = useTimersContext();
+
+    const setFinishedTimers = timersContext.setFinishedTimers;
+    const setTimers = timersContext.setTimers;
 
     function importSave(e: React.ChangeEvent<HTMLInputElement>){
         if(!e.target.files?.length) return;
@@ -28,12 +27,11 @@ export default function DownloadSave({
                 }   
                 const saveDataObj = JSON.parse(decodedStr)
                 if(saveDataObj.activeTimers){
-                    saveDataObj.activeTimers = saveDataObj.activeTimers.map((timer : savedTimer) => {return {...timer, startDate : new Date(timer.startDate)}});
-                    console.log(saveDataObj.activeTimers)
+                    saveDataObj.activeTimers = saveDataObj.activeTimers.map((timer : SavedTimer) => {return {...timer, startDate : new Date(timer.startDate)}});
                     setTimers(saveDataObj.activeTimers)
                 }
                 if(saveDataObj.finishedTimers){
-                    saveDataObj.finishedTimers = saveDataObj.finishedTimers.map((timer : savedTimer) => {return {...timer, startDate : new Date(timer.startDate)}});
+                    saveDataObj.finishedTimers = saveDataObj.finishedTimers.map((timer : SavedTimer) => {return {...timer, startDate : new Date(timer.startDate)}});
                     setFinishedTimers(saveDataObj.finishedTimers);
                 }
             }

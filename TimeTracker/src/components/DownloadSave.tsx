@@ -1,14 +1,11 @@
-import ActiveTimer from "../models/ActiveTimer";
-export default function DownloadSave({
-  timers,
-  finishedTimers,
-}: {
-  timers: ActiveTimer[];
-  finishedTimers: ActiveTimer[];
-}) {
+import { useTimersContext } from "../contexts/TimersContext";
+export default function DownloadSave() {
+
+  const allTimers = useTimersContext();
+
   const csvStr = JSON.stringify({
-    activeTimers: timers,
-    finishedTimers
+    activeTimers: allTimers?.timers,
+    finishedTimers: allTimers?.finishedTimers
   });
 
   return (

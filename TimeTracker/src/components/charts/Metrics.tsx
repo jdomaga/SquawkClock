@@ -1,9 +1,13 @@
+import { useTimersContext } from "../../contexts/TimersContext";
 import ActiveTimer from "../../models/ActiveTimer";
 import { CombineTimers } from "../../utils/formatters";
 import Block from "../Block";
 import BarTime from "./BarTime";
 import PieTime from "./PieTime";
-export default function Metrics({timers} : {timers: ActiveTimer[]}) {
+export default function Metrics() {
+
+  const Alltimers = useTimersContext()
+  const timers = Alltimers.finishedTimers;
 
   const title = timers && timers.length ? 
   <h1>How you're using your time</h1> : 

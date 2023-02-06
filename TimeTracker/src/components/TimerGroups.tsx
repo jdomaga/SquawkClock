@@ -5,38 +5,35 @@ import TimerTable from "./TimerTable";
 import birdclock from "/assets/img/birdclock.png";
 import sleepy from "/assets/img/sleepbird.png";
 import workbird from "/assets/img/workbird.png";
+import { useTimersContext } from "../contexts/TimersContext";
 
-export default function TimerGroups({
-  timers,
-  setTimers,
-  finishedTimers,
-  setFinishedTimers,
-}: {
-  timers: ActiveTimer[];
-  setTimers: Function;
-  finishedTimers: ActiveTimer[];
-  setFinishedTimers: Function;
-}) {
+export default function TimerGroups() {
+
+ const allTimers = useTimersContext();
+
+  
+  const {timers, finishedTimers, setTimers, setFinishedTimers} = allTimers;
+
   function addTimer(activity: string, startDate: Date) {
     const timer: ActiveTimer = { activity, startDate, duration: "1" };
     setTimers([...timers, timer]);
   }
 
   function finishTimer(index: number) {
-    const newActive = timers.filter((timer) => timer);
+    const newActive = timers.filter((timer : ActiveTimer) => timer);
     const finishedTime = newActive.splice(index, 1);
     setTimers(newActive);
     setFinishedTimers([...finishedTimers, ...finishedTime]);
   }
 
   function deleteActive(index: number) {
-    const newActive = timers.filter((timer) => timer);
+    const newActive = timers.filter((timer : ActiveTimer) => timer);
     newActive.splice(index, 1);
     setTimers(newActive);
   }
 
   function deletePast(index: number) {
-    const newpast = finishedTimers.filter((timer) => timer);
+    const newpast = finishedTimers.filter((timer : ActiveTimer) => timer);
     newpast.splice(index, 1);
     setFinishedTimers(newpast);
   }
@@ -75,5 +72,6 @@ export default function TimerGroups({
       ),
     },
   ];
+  
   return <Accordion items={cards} />;
 }

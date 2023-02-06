@@ -7,6 +7,7 @@ import DownloadSave from './components/DownloadSave'
 import ImportSave from './components/ImportSave'
 import ActiveTimer from "./models/ActiveTimer";
 import bgHero from "/assets/img/bg.jpg";
+import {TimersProvider} from './contexts/TimersContext'
 
 const MINS_PER_UPDATE = 1;
 
@@ -35,15 +36,17 @@ function App() {
   }, [timers]);
 
   return (
-    <div className="App flex flex-col gap-y-8">
-      <Hero bgUrl={bgHero} title="Squawk O' Clock">
-        <ImportSave setFinishedTimers={setFinishedTimers} setTimers={setTimers} />
-        <DownloadSave finishedTimers={finishedTimers} timers={timers} />
-        <button className="bg-black text-white w-56"> More Projects ( Soon )</button>
-      </Hero>
-      <TimerGroups timers={timers} setTimers={setTimers} finishedTimers={finishedTimers} setFinishedTimers={setFinishedTimers} />
-      <Metrics timers={finishedTimers}/>
-    </div>
+    <TimersProvider>
+      <div className="App flex flex-col gap-y-8">
+        <Hero bgUrl={bgHero} title="Squawk O' Clock">
+          <ImportSave />
+          <DownloadSave />
+          <button className="bg-black text-white w-56"> More Projects ( Soon )</button>
+        </Hero>
+        <TimerGroups />
+        <Metrics timers={finishedTimers}/>
+      </div>
+    </TimersProvider>
   );
 }
 
